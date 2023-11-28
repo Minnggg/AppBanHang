@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="Sign in"
+            android:textSize="@dimen/_30ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:id="@+id/lg_tvEmail"
+            android:hint="Email Address"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/lg_tvPassword"
+            android:hint="Password"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/lg_btnContinue"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:text="Continue"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"/>
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot password? "/>
+            <TextView
+                android:id="@+id/lg_tvReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reset"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an Account?"/>
+            <TextView
+                android:id="@+id/lg_tvCreate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Create One"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</layout>
