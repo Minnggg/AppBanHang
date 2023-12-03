@@ -78,4 +78,14 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    // Add the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-database")
+
+    //add glide vs circle image
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //add gson
+    implementation("com.google.code.gson:gson:2.8.8")
 }

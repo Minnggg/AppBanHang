@@ -30,17 +30,22 @@
 
 
         <EditText
-            android:hint="First Name"
+            android:id="@+id/edFullName"
+            android:hint="Your Full Name"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"/>
+
         <EditText
-            android:hint="Last Name"
+            android:id="@+id/edPhoneNumber"
+            android:hint="Phone Number"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"/>
+
+
         <EditText
             android:id="@+id/ca_tvEmail"
             android:hint="Email Address"
@@ -49,6 +54,7 @@
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"/>
         <EditText
+            android:inputType="textPassword"
             android:id="@+id/ca_tvPassword"
             android:hint="Password"
             android:layout_marginTop="@dimen/_20sdp"
