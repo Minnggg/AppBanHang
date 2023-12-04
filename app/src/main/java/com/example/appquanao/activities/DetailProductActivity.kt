@@ -65,7 +65,6 @@ class DetailProductActivity : AppCompatActivity() {
                     .child(sharedPref.getString("idNguoiDung","").toString())
                     .child(bundle?.get("id").toString())
                     .setValue(gioHangModel)
-                Toast.makeText(context,"Thêm vào giỏ hàng thành công",Toast.LENGTH_LONG)
             }
             else
             {

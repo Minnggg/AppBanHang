@@ -8,5 +8,5 @@ data class GioHangModel(
     val name: String? = null,
     val price: String? = null,
     val id: String? = null,
-    val soluong: Int ?= null
+    var soluong: Int ?= null
 ): Serializable

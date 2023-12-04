@@ -5,11 +5,13 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appquanao.Model.GioHangModel
 import com.example.appquanao.Model.ProductModel
 import com.example.appquanao.R
+import com.example.appquanao.adapter.CartAdapter
 import com.example.appquanao.adapter.ProductAdapter
 import com.example.appquanao.databinding.ActivityCartBinding
 import com.example.appquanao.databinding.FragmentHomeBinding
@@ -30,8 +32,15 @@ class CartActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_cart)
         setContentView(binding.root)
 
+        initView()
         val database = Firebase.database
         getListGioHang(applicationContext,database)
+    }
+
+    private fun initView() {
+        binding.BtnBack.setOnClickListener(View.OnClickListener {
+            onBackPressed()
+        })
     }
 
     private fun getListGioHang(context: Context, database: FirebaseDatabase) {
@@ -43,12 +52,15 @@ class CartActivity : AppCompatActivity() {
                 ListGioHang = mutableListOf<GioHangModel>()
                 for (snapshot in dataSnapshot.children) {
                     val yourObject = snapshot.getValue(GioHangModel::class.java)
-//                    Log.d("TAG", "soluong: "+yourObject.toString())
                     yourObject?.let {
                         ListGioHang.add(it)
                     }
                 }
-                Log.d("TAG", "soluong1: "+ListGioHang.size)
+                val adapter : CartAdapter = CartAdapter(ListGioHang,context)
+                var layoutManager = LinearLayoutManager(context)
+                layoutManager.orientation = LinearLayoutManager.VERTICAL
+                binding.rvListProduct.layoutManager = layoutManager
+                binding.rvListProduct.adapter = adapter
             }
             override fun onCancelled(databaseError: DatabaseError) {
             }
