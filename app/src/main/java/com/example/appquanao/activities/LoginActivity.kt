@@ -88,13 +88,12 @@ class LoginActivity : AppCompatActivity() {
                 }
                 editor.putString("idNguoiDung",it.user?.uid)
                 editor.apply()
-
-
+                Toast.makeText(applicationContext,"Đăng nhập thành công.",Toast.LENGTH_LONG).show()
 
                 startActivity(Intent(this, MainActivity::class.java))
             }
             .addOnFailureListener {
-                Toast.makeText(applicationContext,"Tài khoản mật khẩu sai,xin thử lại.",Toast.LENGTH_LONG)
+                Toast.makeText(applicationContext,"Tài khoản mật khẩu sai,xin thử lại.",Toast.LENGTH_LONG).show()
             }
     }
 

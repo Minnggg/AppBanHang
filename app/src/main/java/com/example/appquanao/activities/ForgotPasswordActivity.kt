@@ -30,7 +30,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         startActivity(Intent(this,LoginActivity::class.java))
-                        Toast.makeText(applicationContext,"Đã gửi email reset",Toast.LENGTH_LONG)
+                        Toast.makeText(applicationContext,"Đã gửi email reset",Toast.LENGTH_LONG).show()
                     }
                 }
         })

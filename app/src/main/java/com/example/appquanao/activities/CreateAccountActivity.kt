@@ -37,8 +37,8 @@ class CreateAccountActivity : AppCompatActivity() {
             }
         })
     }
+    //hàm đăng kỳ
     private fun signUp(email : String, password : String) {
-        var check = false
         auth.createUserWithEmailAndPassword(email,password)
             .addOnSuccessListener {
                 val database = Firebase.database
@@ -58,12 +58,14 @@ class CreateAccountActivity : AppCompatActivity() {
                             Log.d("TAG", "update1: "+ auth.currentUser?.displayName)
                         }
                     }
+
+                Toast.makeText(applicationContext,"Đăng kí thành công",Toast.LENGTH_LONG).show()
+                    //chuyển sang màn đăng nhập
                 startActivity(Intent(this, LoginActivity::class.java))
             }
             .addOnFailureListener {
+                Toast.makeText(applicationContext,it.message,Toast.LENGTH_LONG).show()
             }
-        if (check == false) {
 
-        }
     }
 }

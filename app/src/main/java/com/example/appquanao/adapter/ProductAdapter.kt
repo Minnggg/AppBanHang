@@ -53,6 +53,7 @@ class ProductAdapter (private val dataList: List<ProductModel>,private  val cont
             bundle.putString("gia",data.price)
             bundle.putString("anhsanpham",data.img_url)
             val intent = Intent(context1,DetailProductActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtras(bundle)
             ContextCompat.startActivity(context1,intent,bundle)
         })
@@ -64,6 +65,7 @@ class ProductAdapter (private val dataList: List<ProductModel>,private  val cont
             bundle.putString("gia",data.price)
             bundle.putString("anhsanpham",data.img_url)
             val intent = Intent(context1,DetailProductActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtras(bundle)
             ContextCompat.startActivity(context1,intent,bundle)
         })
@@ -74,6 +76,7 @@ class ProductAdapter (private val dataList: List<ProductModel>,private  val cont
             bundle.putString("gia",data.price)
             bundle.putString("anhsanpham",data.img_url)
             val intent = Intent(context1,DetailProductActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtras(bundle)
             ContextCompat.startActivity(context1,intent,bundle)
         })

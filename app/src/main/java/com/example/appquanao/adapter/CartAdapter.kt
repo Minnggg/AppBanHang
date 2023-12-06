@@ -2,7 +2,6 @@ package com.example.appquanao.adapter
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -19,6 +18,7 @@ import com.example.appquanao.Model.GioHangModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.DetailProductActivity
 import com.google.firebase.Firebase
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
 
 class CartAdapter(private val dataList: List<GioHangModel>, private  val context1: Context) : RecyclerView.Adapter<CartAdapter.MyViewHolder>() {
@@ -55,18 +55,18 @@ class CartAdapter(private val dataList: List<GioHangModel>, private  val context
         holder.tvSoluong.text = soluong.toString()
 
         holder.btnTru.setOnClickListener(View.OnClickListener {
-            soluong = soluong!! - 1
             holder.tvSoluong.text = soluong.toString()
             holder.tvThanhTien.text ="Thành tiền: "+  String.format("%,d", data.price.toString().replace(".", "").toInt()* soluong!!)+"đ"
-            if(soluong!=0) {
-
-            }
-            else {
-                showConfirmationDialog()
+            if(soluong!=1) {
+                soluong = soluong!! - 1
+                data.soluong = soluong
                 database.getReference("giohang")
                     .child(sharedPref.getString("idNguoiDung","").toString())
                     .child(data.id.toString())
-                    .setValue(null)
+                    .setValue(data)
+            }
+            else {
+                showDialog(it.context,database,sharedPref,data)
             }
         })
         holder.btnCong.setOnClickListener(View.OnClickListener {
@@ -118,23 +118,28 @@ class CartAdapter(private val dataList: List<GioHangModel>, private  val context
     override fun getItemCount(): Int {
         return dataList.size
     }
-    fun showConfirmationDialog() {
-        val builder = AlertDialog.Builder(context1.applicationContext)
-        builder.setTitle("Xác nhận")
-        builder.setMessage("Bạn có muốn tiếp tục không?")
 
-        builder.setPositiveButton("Có") { dialogInterface: DialogInterface, i: Int ->
-            // Xử lý khi người dùng chọn "Có"
-            dialogInterface.dismiss()
-            // Thêm code xử lý khi người dùng chọn "Có" ở đây
+    private fun showDialog(
+        contextt: Context,
+        database: FirebaseDatabase,
+        sharedPref: SharedPreferences,
+        data: GioHangModel
+    ) {
+        val builder = AlertDialog.Builder(contextt)
+        builder.setTitle("Thông báo")
+        builder.setMessage("Bạn có muốn xóa sản phẩm ra khỏi giỏ hàng ?")
+        builder.setPositiveButton("Có") { dialog, _ ->
+            database.getReference("giohang")
+                .child(sharedPref.getString("idNguoiDung","").toString())
+                .child(data.id.toString())
+                .setValue(null)
+            dialog.dismiss()
         }
-
-        builder.setNegativeButton("Không") { dialogInterface: DialogInterface, i: Int ->
-            // Xử lý khi người dùng chọn "Không"
-            dialogInterface.dismiss()
-            // Thêm code xử lý khi người dùng chọn "Không" ở đây
+        builder.setNegativeButton("Không") { dialog, _ ->
+            dialog.dismiss()
         }
-        val dialog: AlertDialog = builder.create()
+        val dialog = builder.create()
         dialog.show()
     }
+
 }
