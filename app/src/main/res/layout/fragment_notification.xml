@@ -58,7 +58,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textSize="@dimen/_15sdp"
-
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

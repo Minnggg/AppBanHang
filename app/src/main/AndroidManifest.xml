@@ -15,6 +15,9 @@
         android:theme="@style/Theme.AppQuanAo"
         tools:targetApi="31">
         <activity
+            android:name=".activities.ChiTietLichSuDatHangActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditProfileActivity"
             android:exported="false" />
         <activity
