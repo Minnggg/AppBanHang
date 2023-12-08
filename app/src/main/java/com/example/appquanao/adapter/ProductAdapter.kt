@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,7 +18,10 @@ import com.example.appquanao.Model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.DetailProductActivity
 
-class ProductAdapter (private val dataList: List<ProductModel>,private  val context1: Context) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
+class ProductAdapter (private var dataList: List<ProductModel>,private  val context1: Context) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() , Filterable {
+
+    private var dataOld = dataList
+
 
     // Tạo ViewHolder cho mỗi item trong RecyclerView
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -83,5 +88,38 @@ class ProductAdapter (private val dataList: List<ProductModel>,private  val cont
 
     override fun getItemCount(): Int {
         return dataList.size
+    }
+
+    // Triển khai phương thức getFilter của Filterable
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val strSearch : String = constraint.toString()
+                if(strSearch.isEmpty()){
+                    dataList = dataOld
+                }
+                else
+                {
+                    var list = mutableListOf<ProductModel>()
+                    for(item in dataOld){
+                        if(item.name.toString().toLowerCase().contains(strSearch.toLowerCase()))
+                        {
+                            list.add(item)
+                        }
+                    }
+                    dataList = list
+
+                }
+                val results = FilterResults()
+                results.values = dataList
+                return results
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                dataList = results?.values as List<ProductModel>
+                notifyDataSetChanged()
+            }
+        }
     }
 }

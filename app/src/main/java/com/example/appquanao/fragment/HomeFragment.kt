@@ -18,6 +18,7 @@ import com.example.appquanao.Model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.CartActivity
 import com.example.appquanao.activities.DetailProductActivity
+import com.example.appquanao.activities.SearchActivity
 import com.example.appquanao.activities.ViewProductByCategoryActivity
 import com.example.appquanao.adapter.ProductAdapter
 import com.example.appquanao.databinding.FragmentHomeBinding
@@ -94,7 +95,9 @@ class HomeFragment : Fragment() {
             startActivity(intent, bundle)
         })
 
-
+        binding.btnSearch.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(context,SearchActivity::class.java))
+        })
 
         return binding.root
     }

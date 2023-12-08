@@ -8,62 +8,57 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appquanao.Model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.adapter.ProductAdapter
-import com.example.appquanao.databinding.ActivityViewProductByCategoryBinding
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 
-class ViewProductByCategoryActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity() {
     lateinit var searchView: SearchView
     lateinit var adapter : ProductAdapter
-
-
-    lateinit var binding: ActivityViewProductByCategoryBinding
-    private var objectList = mutableListOf<ProductModel>()
+    private var listSp  = mutableListOf<ProductModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_view_product_by_category)
-        setContentView(binding.root)
-        val database = Firebase.database
-        val bundle = intent.extras
+        setContentView(R.layout.activity_search)
 
 
-        setSupportActionBar(binding.toolbarSearchCategory)
+        val myToolbar: Toolbar = findViewById(R.id.toolbar_search)
+        val rvKetqua: RecyclerView = findViewById(R.id.rvKetqua)
+        setSupportActionBar(myToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        if (bundle!=null)
-        {
-            val products =  database.getReference(bundle.getString("name",""))
-            products.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    objectList = mutableListOf<ProductModel>()
-                    for (snapshot in dataSnapshot.children) {
-                        val yourObject = snapshot.getValue(ProductModel::class.java)
-                        yourObject?.let {
-                            objectList.add(it)
-                        }
+        val database = Firebase.database
+        val tablet =  database.getReference("product/tablet")
+        tablet.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                listSp = mutableListOf<ProductModel>()
+                for (snapshot in dataSnapshot.children) {
+                    val yourObject = snapshot.getValue(ProductModel::class.java)
+                    var idx=0
+                    yourObject?.let {
+                        listSp.add(it)
                     }
-                    adapter = ProductAdapter(objectList,applicationContext)
-                    var layoutManager = GridLayoutManager(applicationContext,2)
-                    binding.rvListProductByCategory.layoutManager = layoutManager
-                    binding.rvListProductByCategory.adapter = adapter
                 }
-                override fun onCancelled(databaseError: DatabaseError) {
-                }
-            })
-        }
-    }
+                adapter = ProductAdapter(listSp,applicationContext)
+                var layoutManager = GridLayoutManager(applicationContext,2)
+                rvKetqua.layoutManager = layoutManager
+                rvKetqua.adapter = adapter
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+            }
+        })
 
+
+
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_search,menu)
@@ -105,7 +100,5 @@ class ViewProductByCategoryActivity : AppCompatActivity() {
         }
         super.onBackPressed()
     }
-
-
 
 }
