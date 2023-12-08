@@ -14,6 +14,7 @@ import com.example.appquanao.Model.User
 import com.example.appquanao.R
 import com.example.appquanao.activities.EditProfileActivity
 import com.example.appquanao.activities.Splash
+import com.example.appquanao.activities.ViewProductByCategoryActivity
 import com.example.appquanao.databinding.FragmentProfileBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -65,9 +66,20 @@ class ProfileFragment : Fragment() {
             var intent = Intent(this?.context,EditProfileActivity::class.java)
             startActivity(intent)
         })
-
+        //chức năng address
         binding.btnAddress.setOnClickListener(View.OnClickListener {
             Toast.makeText(context,"Chức năng đang phát triển",Toast.LENGTH_LONG).show()
+        })
+
+        //chức năng hiển thị wish_list
+        var sharedPref = context?.getSharedPreferences("AppQuanAo", Context.MODE_PRIVATE)
+        binding.btnWishlish.setOnClickListener(View.OnClickListener {
+            val bundle = Bundle()
+            bundle.putString("name","wish_list/"+sharedPref?.getString("idNguoiDung","").toString())
+            val intent = Intent(context, ViewProductByCategoryActivity::class.java)
+            intent.putExtras(bundle)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent, bundle)
         })
     }
 
