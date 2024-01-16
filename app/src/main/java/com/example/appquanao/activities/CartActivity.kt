@@ -10,8 +10,8 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appquanao.Model.GioHangModel
-import com.example.appquanao.Model.User
+import com.example.appquanao.model.GioHangModel
+import com.example.appquanao.model.User
 import com.example.appquanao.R
 import com.example.appquanao.adapter.CartAdapter
 import com.example.appquanao.databinding.ActivityCartBinding
@@ -48,7 +48,6 @@ class CartActivity : AppCompatActivity() {
             if(check)
             {
                 showInputDialog(it.context,database)
-
             }
         })
 
@@ -60,9 +59,7 @@ class CartActivity : AppCompatActivity() {
         builder.setTitle("Nhập thông tin")
 
         val sharedPreferences = applicationContext.getSharedPreferences("AppQuanAo", Context.MODE_PRIVATE)
-
-
-
+        
         val layout = LinearLayout(context)
         layout.orientation = LinearLayout.VERTICAL
 
@@ -76,7 +73,6 @@ class CartActivity : AppCompatActivity() {
 
         val ipadress = EditText(context)
         ipadress.hint = "Địa chỉ người nhận"
-
 
         val database = Firebase.database
         database.getReference("user/"+sharedPreferences.getString("idNguoiDung","").toString())
@@ -92,7 +88,6 @@ class CartActivity : AppCompatActivity() {
                 }
             })
         layout.addView(ipadress)
-
 
 
         builder.setView(layout)
@@ -164,7 +159,6 @@ class CartActivity : AppCompatActivity() {
                         sum = sum + it.price.toString().replace(".", "").toInt()* it.soluong!!
                     }
                 }
-
                 if(ListGioHang.size!=0) check = true
                 else check = false
                 //cài adapter cho recyclerview
@@ -174,9 +168,7 @@ class CartActivity : AppCompatActivity() {
                 binding.rvListProduct.layoutManager = layoutManager
                 binding.rvListProduct.adapter = adapter
 
-                binding.tvTongTien.text = String.format("%,d",sum)+" đ"
-
-            }
+                       }
             override fun onCancelled(databaseError: DatabaseError) {
             }
         })

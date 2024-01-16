@@ -10,14 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.appquanao.Model.ProductModel
+import com.example.appquanao.model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.CartActivity
-import com.example.appquanao.activities.DetailProductActivity
 import com.example.appquanao.activities.SearchActivity
 import com.example.appquanao.activities.ViewProductByCategoryActivity
 import com.example.appquanao.adapter.ProductAdapter

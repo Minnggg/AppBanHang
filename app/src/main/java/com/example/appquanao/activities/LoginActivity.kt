@@ -5,11 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.appquanao.R
+import com.example.appquanao.admin.AdminActivity
 import com.example.appquanao.databinding.ActivityLoginBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +33,10 @@ class LoginActivity : AppCompatActivity() {
 //        //check xem đã đăng nhập chưa
         if (sharedPref.getBoolean("dadangnhap",false))
         {
-            startActivity(Intent(this, MainActivity::class.java))
+            val tk  = sharedPref.getString("taikhoan","1")
+            val mk = sharedPref.getString("matkhau","1")
+            if(tk =="admin" && mk =="admin") startActivity(Intent(this,AdminActivity::class.java))
+            else startActivity(Intent(this, MainActivity::class.java))
         }
         // check xem có đang được lưu tkhoan matkhau hay khong
         if(sharedPref.getBoolean("luutk",false)){
@@ -47,8 +50,6 @@ class LoginActivity : AppCompatActivity() {
             binding.lgTvEmail.setText("")
             binding.lgTvPassword.setText("")
         }
-
-
         initView()
     }
 
@@ -66,35 +67,54 @@ class LoginActivity : AppCompatActivity() {
                 signIn(email,password)
             }
         })
-
     }
 
     private fun signIn(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                var context : Context = applicationContext
-                var sharedPref : SharedPreferences = context.getSharedPreferences("AppQuanAo", Context.MODE_PRIVATE)
-                var editor : SharedPreferences.Editor = sharedPref.edit()
-                editor.putBoolean("dadangnhap",true)
-                if(binding.checkbox.isChecked){
-                    editor.putBoolean("luutk",true)
-                    editor.putString("taikhoan",binding.lgTvEmail.text.toString().trim())
-                    editor.putString("matkhau",binding.lgTvPassword.text.toString().trim())
-                    editor.apply()
-                }
-                else {
-                    editor.putBoolean("luutk",false)
-                    editor.apply()
-                }
-                editor.putString("idNguoiDung",it.user?.uid)
-                editor.apply()
-                Toast.makeText(applicationContext,"Đăng nhập thành công.",Toast.LENGTH_LONG).show()
+        var context : Context = applicationContext
+        var sharedPref : SharedPreferences = context.getSharedPreferences("AppQuanAo", Context.MODE_PRIVATE)
+        var editor : SharedPreferences.Editor = sharedPref.edit()
 
-                startActivity(Intent(this, MainActivity::class.java))
+        if(email=="admin" && password == "admin"){
+            Toast.makeText(context,"Đăng nhập quyền admin thành công",Toast.LENGTH_LONG).show()
+            editor.putBoolean("dadangnhap",true)
+            if(binding.checkbox.isChecked){
+                editor.putBoolean("luutk",true)
+                editor.putString("taikhoan",binding.lgTvEmail.text.toString().trim())
+                editor.putString("matkhau",binding.lgTvPassword.text.toString().trim())
+                editor.apply()
             }
-            .addOnFailureListener {
-                Toast.makeText(applicationContext,"Tài khoản mật khẩu sai,xin thử lại.",Toast.LENGTH_LONG).show()
+            else {
+                editor.putBoolean("luutk",false)
+                editor.apply()
             }
+            editor.apply()
+            startActivity(Intent(this, AdminActivity::class.java))
+        }
+        else{
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+
+                    editor.putBoolean("dadangnhap",true)
+                    if(binding.checkbox.isChecked){
+                        editor.putBoolean("luutk",true)
+                        editor.putString("taikhoan",binding.lgTvEmail.text.toString().trim())
+                        editor.putString("matkhau",binding.lgTvPassword.text.toString().trim())
+                        editor.apply()
+                    }
+                    else {
+                        editor.putBoolean("luutk",false)
+                        editor.apply()
+                    }
+                    editor.putString("idNguoiDung",it.user?.uid)
+                    editor.apply()
+                    Toast.makeText(applicationContext,"Đăng nhập thành công.",Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                .addOnFailureListener {
+                    Toast.makeText(applicationContext,"Tài khoản mật khẩu sai,xin thử lại.",Toast.LENGTH_LONG).show()
+                }
+        }
+
     }
 
 }

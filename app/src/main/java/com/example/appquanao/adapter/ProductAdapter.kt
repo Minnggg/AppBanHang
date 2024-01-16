@@ -13,11 +13,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.appquanao.Model.GioHangModel
-import com.example.appquanao.Model.ProductModel
+import com.example.appquanao.model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.DetailProductActivity
 import com.google.firebase.Firebase
@@ -30,11 +28,18 @@ class ProductAdapter (private var dataList: List<ProductModel>,private  val cont
 
     private var dataOld = dataList
     // Tạo ViewHolder cho mỗi item trong RecyclerView
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
         var btnAddWishLish : ImageButton = itemView.findViewById(R.id.btnAddWishList)
         var imgAnhsanpham: ImageView = itemView.findViewById(R.id.imgAnh)
         var tvTensanpham: TextView = itemView.findViewById(R.id.tvTenSanPham)
         var tvGiasanpham: TextView = itemView.findViewById(R.id.tvGiaSanPham)
+        override fun onClick(p0: View?) {
+            val position = adapterPosition
+            if(p0?.id == R.id.btnAddWishList )
+            {
+                
+            }
+        }
     }
 
     // Tạo ViewHolder từ layout của mỗi item và kết nối với MyViewHolder

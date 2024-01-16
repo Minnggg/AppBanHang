@@ -1,14 +1,13 @@
 package com.example.appquanao.activities
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.appquanao.Model.User
+import com.example.appquanao.model.User
 import com.example.appquanao.R
 import com.example.appquanao.databinding.ActivityCreateAccountBinding
 import com.google.firebase.Firebase

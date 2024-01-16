@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.appquanao.Model.GioHangModel
+import com.example.appquanao.model.GioHangModel
 import com.example.appquanao.R
 import com.example.appquanao.activities.DetailProductActivity
 import com.google.firebase.Firebase

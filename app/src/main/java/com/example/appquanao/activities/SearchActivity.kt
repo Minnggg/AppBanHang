@@ -10,7 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appquanao.Model.ProductModel
+import com.example.appquanao.model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.adapter.ProductAdapter
 import com.google.firebase.Firebase

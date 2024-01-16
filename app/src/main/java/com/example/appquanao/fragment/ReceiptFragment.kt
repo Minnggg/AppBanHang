@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appquanao.Model.LichSuDonHangModel
-import com.example.appquanao.Model.GioHangModel
-import com.example.appquanao.Model.User
+import com.example.appquanao.model.LichSuDonHangModel
+import com.example.appquanao.model.GioHangModel
+import com.example.appquanao.model.User
 import com.example.appquanao.R
 import com.example.appquanao.adapter.LichSuDatHangAdapter
 import com.example.appquanao.databinding.FragmentReceiptBinding

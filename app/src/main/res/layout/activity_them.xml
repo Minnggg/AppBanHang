@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".admin.ThemActivity">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/name"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Tên sản phẩm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/price"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Giá sản phẩm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/retailer"
+                android:hint="Nhà cung cấp sản phẩm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/type"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Loại sản phẩm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/url"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="Link đến sản phẩm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:maxLines="4"
+                    android:id="@+id/img_url"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:hint="Ảnh sản phẩm"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/btnChonAnh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn ảnh"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp" />
+
+            <Button
+                android:id="@+id/btnThem"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm sản phẩm"/>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

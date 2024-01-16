@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import com.example.appquanao.Model.User
+import com.example.appquanao.model.User
 import com.example.appquanao.R
 import com.example.appquanao.databinding.ActivityEditProfileBinding
 import com.google.firebase.Firebase

@@ -7,7 +7,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appquanao.Model.LichSuDonHangModel
+import com.example.appquanao.model.LichSuDonHangModel
 import com.example.appquanao.R
 import com.example.appquanao.adapter.ItemLichSuAdapter
 import com.example.appquanao.databinding.ActivityChiTietLichSuDatHangBinding

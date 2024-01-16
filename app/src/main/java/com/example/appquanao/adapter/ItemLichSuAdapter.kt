@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.appquanao.Model.GioHangModel
+import com.example.appquanao.model.GioHangModel
 import com.example.appquanao.R
 class ItemLichSuAdapter(private val dataList: List<GioHangModel>, private  val context1: Context) : RecyclerView.Adapter<ItemLichSuAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

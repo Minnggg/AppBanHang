@@ -1,4 +1,4 @@
-package com.example.appquanao.Model
+package com.example.appquanao.model
 
 import java.io.Serializable
 

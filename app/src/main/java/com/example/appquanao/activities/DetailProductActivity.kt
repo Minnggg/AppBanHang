@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.example.appquanao.Model.GioHangModel
-import com.example.appquanao.Model.ProductModel
+import com.example.appquanao.model.GioHangModel
+import com.example.appquanao.model.ProductModel
 import com.example.appquanao.R
 import com.example.appquanao.databinding.ActivityDetailProductBinding
 import com.google.firebase.Firebase
